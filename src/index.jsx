@@ -22,6 +22,7 @@ renderApp(Template);
 //
 if (module && module.hot) {
   module.hot.accept('./components/Template', () => {
-    renderApp(Template); // reinitilize to show changes without full page refresh
+    const NextApp = require('./components/Template').default; // eslint-disable-line
+    renderApp(NextApp); // reinitilize to show changes without full page refresh
   });
 }

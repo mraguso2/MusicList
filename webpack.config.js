@@ -9,19 +9,13 @@ module.exports = {
   context: resolve(__dirname, 'src'), // compile everything in src
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
+    'react-hot-loader/babel',
+    'webpack-hot-middleware/client',
     './index.jsx',
   ],
   output: {
     filename: 'build.js',
-    path: resolve(__dirname, 'public', 'javascripts'),
-    publicPath: '/javascripts',
-  },
-  // configure dev server
-  devServer: {
-    hot: true,
-    contentBase: resolve(__dirname, ''),
+    path: '/',
     publicPath: '/javascripts',
   },
   resolve: {
@@ -39,5 +33,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // update on changed bits in build file
     new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };
