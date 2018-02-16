@@ -1,5 +1,6 @@
 const { resolve } = require('path'); // reading and manipulating paths
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   /* Context = base directory which to resolve our entry points
@@ -14,9 +15,9 @@ module.exports = {
     './index.jsx',
   ],
   output: {
-    filename: 'build.js',
+    filename: 'javascripts/build.js',
     path: '/',
-    publicPath: '/javascripts',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -28,11 +29,19 @@ module.exports = {
         exclude: /(node_modules|bower_components|public\/)/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        }),
+      },
     ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // update on changed bits in build file
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin('stylesheets/style.css'),
   ],
 };
