@@ -18,7 +18,6 @@ class ErrorBoxContainer extends React.Component {
 
   render() {
     const { errorStore } = this.props;
-    console.log(this.props);
     return (
       <ErrorBox errorStore={errorStore} closeErrorFunction={this.closeError} />
     );

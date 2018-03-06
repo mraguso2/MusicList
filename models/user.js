@@ -8,9 +8,11 @@ const { Schema } = mongoose;
 // specify data-type to help prevent data corruption
 const User = new Schema({
   username: String,
+  password: { type: String, select: false },
   firstName: String,
   lastName: String,
   email: String,
+  passwordReset: { type: String, select: false },
 });
 
 User.plugin(passportLocalMongoose);
