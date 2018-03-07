@@ -65,6 +65,7 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-logger": "^3.0.6",
     "supertest": "^3.0.0",
+    "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack-dev-middleware": "^2.0.5",
     "webpack-hot-middleware": "^2.21.0"
   }

@@ -1,6 +1,7 @@
 const { resolve } = require('path'); // reading and manipulating paths
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const cssOutputLocation = process.env.NODE_ENV === 'production' ?
   'public/stylesheets/style-prod.css' :
@@ -41,6 +42,11 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
+        test: /\.js?$/,
+        exclude: /(node_modules|bower_components|public\/)/,
+        loader: 'babel-loader',
+      },
+      {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -71,7 +77,7 @@ module.exports = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin());
+  module.exports.plugins.push(new UglifyJsPlugin());
 }
 
 if (process.env.NODE_ENV !== 'production') {

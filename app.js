@@ -8,7 +8,7 @@ const expressSession = require('express-session')({
   resave: false,
   saveUninitialized: false,
 });
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 const LocalStrategy = require('passport-local').Strategy;
 const logger = require('morgan');
 const mongoose = require('mongoose');
