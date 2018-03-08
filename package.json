@@ -9,7 +9,7 @@
     "startdb": "mongod --config /usr/local/etc/mongod.conf",
     "test": "jest",
     "lint": "eslint .",
-    "build-prod": "NODE_ENV=production webpack -p --config webpack.config.js"
+    "build-prod": "NODE_ENV=production webpack -p --config webpack.config.babel.js"
   },
   "dependencies": {
     "availity-reactstrap-validation": "^1.4.3",

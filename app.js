@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const path = require('path');
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config');
+const webpackConfig = require('./webpack.config.babel');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
