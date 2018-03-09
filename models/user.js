@@ -7,12 +7,13 @@ const { Schema } = mongoose;
 // initilize a new schema
 // specify data-type to help prevent data corruption
 const User = new Schema({
-  username: String,
-  password: { type: String, select: false },
+  albums: [Schema.Types.Mixed],
+  artists: [Schema.Types.Mixed],
+  email: String,
   firstName: String,
   lastName: String,
-  email: String,
   passwordReset: { type: String, select: false },
+  username: String,
 });
 
 User.plugin(passportLocalMongoose);
