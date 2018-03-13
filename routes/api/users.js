@@ -6,6 +6,21 @@ const User = require('../../models/user'); // need to require user model
 
 const router = express.Router();
 
+// POST to /find
+router.post('/find', (req, res, next) => {
+  // Get the requested user
+  User.findOne({ username: req.body.username }, (err, user) => {
+    if (err) {
+      return res.json({ error: err });
+    }
+    if (!user) {
+      return res.json({ error: 'Username cannot be found' });
+    }
+    const { username, albums, artists } = user;
+    return res.json({ username, albums, artists });
+  });
+});
+
 // get us all users
 router.get('/list', (req, res, next) => {
   User.find((err, users) => {
