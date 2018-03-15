@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { populateAlbums } from '../../actions/albums';
-import { populateArtists } from '../../actions/artists';
+import { deleteAlbum, populateAlbums } from '../../actions/albums';
+import { deleteArtist, populateArtists } from '../../actions/artists';
 import { userClearList, userLookup } from '../../actions/users';
 
 import ListPage from './ListPage';
@@ -41,22 +41,32 @@ class ListPageContainer extends React.Component {
   }
 
   render() {
-    const { list } = this.props;
+    const {
+      authentication,
+      deleteAlbumFunction,
+      deleteArtistFunction,
+      list,
+    } = this.props;
     if (list.username === '') {
       return (<p />);
     }
 
     return (
       <ListPage
-        username={list.username}
         albums={list.albumsPopulated}
         artists={list.artistsPopulated}
+        deleteAlbumFunction={deleteAlbumFunction}
+        deleteArtistFunction={deleteArtistFunction}
+        authentication={authentication}
+        username={list.username}
       />
     );
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  deleteAlbumFunction: deleteAlbum,
+  deleteArtistFunction: deleteArtist,
   populateAlbumsFunction: populateAlbums,
   populateArtistsFunction: populateArtists,
   userClearListFunction: userClearList,
@@ -66,6 +76,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = state => ({
   list: state.list,
+  authentication: state.authentication,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPageContainer);

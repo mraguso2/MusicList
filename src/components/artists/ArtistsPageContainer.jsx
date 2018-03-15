@@ -15,6 +15,7 @@ export class ArtistsPageContainer extends React.Component {
     const {
       addArtistFunction,
       artists,
+      authentication,
       searchArtistsFunction,
       user,
     } = this.props;
@@ -22,6 +23,7 @@ export class ArtistsPageContainer extends React.Component {
       <ArtistsPage
         addArtistFunction={addArtistFunction}
         artists={artists}
+        authentication={authentication}
         searchArtistsFunction={searchArtistsFunction}
         user={user}
       />
@@ -34,6 +36,10 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   searchArtistsFunction: searchArtists,
   dispatch,
 }, dispatch);
-const mapStateToProps = state => ({ artists: state.artists, user: state.user });
+const mapStateToProps = state => ({
+  artists: state.artists,
+  authentication: state.authentication,
+  user: state.user,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistsPageContainer);
